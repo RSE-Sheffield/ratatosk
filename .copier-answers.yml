@@ -1,0 +1,14 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 2026.08.14-6-g6a1dc79
+_src_path: gh:scientific-python/cookie
+backend: uv
+docs: properdocs
+email: n.shephard@sheffield.ac.uk
+full_name: Neil Shephard
+license: MIT
+org: RSE-Sheffield
+project_name: ratatosk
+project_short_description: Validated electrochemical data-processing, analysis and
+    integrity tool for battery research.
+url: https://github.com/RSE-Sheffield/ratatosk
+vcs: true
