@@ -6,6 +6,10 @@ test_profile:
     mkdir prof
     python -m cProfile -o prof/$(git rev-parse HEAD)_$(date +%Y%m%d).prof $(which pytest) tests/test_<file>.py
 
+# uv pip install package with dev group dependencies
+pip_install:
+    uv pip install --editable . --group dev
+
 # Pre-commit ruff-check all files
 pc_ruff:
     pre-commit run ruff-check --all-files
