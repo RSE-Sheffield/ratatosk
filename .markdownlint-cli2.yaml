@@ -1,0 +1,28 @@
+# Configuration
+config:
+  line-length:
+    line_length: 120
+    code_blocks: false
+    tables: false
+  html:
+    allowed_elements:
+      - div
+      - br
+
+globs:
+  - "**/*.md"
+
+ignores:
+  - "tmp/"
+  - "paper.md"
+  - ".venv/"
+  - ".github/CONTRIBUTING.md"
+  - "docs/api/config.md"
+  - "docs/api/entry_point.md"
+  - "docs/api/io.md"
+  - "docs/api/layopt.md"
+  - "docs/api/logging.md"
+  - "docs/api/run_modules.md"
+  - "docs/api/validation.md"
+
+fix: true

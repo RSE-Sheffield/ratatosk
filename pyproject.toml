@@ -1,17 +1,18 @@
 [build-system]
-requires = ["uv_build>=0.7.19,<0.12"]
-build-backend = "uv_build"
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
 
 
 [project]
 name = "ratatosk"
 version = "0.1.0"
 authors = [
+  { name = "Nik Reeves-McLaren", email = "nik.reeves-mclaren@sheffield.ac.uk"},
   { name = "Neil Shephard", email = "n.shephard@sheffield.ac.uk" },
 ]
 description = "Validated electrochemical data-processing, analysis and integrity tool for battery research."
 readme = "README.md"
-license = "GNU GPLv3"
+license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.14"
 classifiers = [
@@ -26,7 +27,12 @@ classifiers = [
   "Topic :: Scientific/Engineering",
   "Typing :: Typed",
 ]
-dependencies = []
+dependencies = [
+  "lmfit>=1.3.4",
+  "matplotlib>=3.11.2",
+  "numpy>=2.5.3",
+  "scipy>=1.18.1",
+]
 
 [project.urls]
 Homepage = "https://github.com/RSE-Sheffield/ratatosk"
@@ -36,26 +42,41 @@ Changelog = "https://github.com/RSE-Sheffield/ratatosk/releases"
 
 
 [dependency-groups]
-test = [
+docs = [
+  "zensical>=0.0.63",
+]
+tests = [
   "pytest >=9",
   "pytest-cov >=7",
+  "pytest-loguru>=0.4.1",
+  "pytest-mpl>=0.19.0",
+  "pytest-testmon>=2.2.0",
+  "pytest-xdist>=3.8.0",
+  "syrupy>=6.1.1",
+]
+notebooks = [
+  "jupyter>=1.1.1",
+  "marimo>=0.24.2",
 ]
 dev = [
-  { include-group = "test" },
-]
-docs = [
-    "markdown>=3.9",
-    "mdx-include>=1.4.2",
-    "mkdocs-material>=9.1.19",
-    "mkdocstrings-python>=1.18.2",
-    "properdocs>=1.6.7",
-    "pyyaml>=6.0.1",
+  { include-group = "docs" },
+  { include-group = "notebooks" },
+  { include-group = "tests" },
+  "black>=26.5.1",
+  "codespell>=2.4.3",
+  "ipdb>=0.13.13",
+  "mypy>=2.3.1",
+  "pre-commit>=4.6.2",
+  "pylint>=4.0.8",
+  "ruff>=0.16.8",
+  "scipy-stubs>=1.18.1.1",
+  "ty>=0.0.82",
 ]
 
 
 [tool.pytest]
 minversion = "9.0"
-addopts = ["-ra", "--showlocals"]
+addopts = ["-ra", "--showlocals --cov"]
 strict = true
 filterwarnings = [
   "error",
@@ -66,6 +87,12 @@ testpaths = [
 ]
 
 
+[tool.codespell]
+skip = 'uv.lock'
+count = ''
+quiet-level = 3
+# ignore-words-list = ''
+
 [tool.coverage]
 run.source = ["ratatosk"]
 report.exclude_also = [
@@ -75,7 +102,7 @@ report.exclude_also = [
 
 [tool.mypy]
 files = ["src", "tests"]
-python_version = "3.10"
+python_version = "3.14"
 warn_unused_configs = true
 strict = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
@@ -138,7 +165,7 @@ ignore = [
 
 
 [tool.pylint]
-py-version = "3.10"
+py-version = "3.14"
 ignore-paths = [".*/_version.py"]
 reports.output-format = "colorized"
 similarities.ignore-imports = "yes"
@@ -150,3 +177,9 @@ messages_control.disable = [
   "missing-function-docstring",
   "wrong-import-position",
 ]
+
+[tool.ty.rules]
+possibly-unresolved-reference = "warn"
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"

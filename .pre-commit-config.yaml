@@ -91,3 +91,45 @@ repos:
     rev: "v1.30.0"
     hooks:
       - id: zizmor
+
+  - repo: local
+    hooks:
+      - id: disallow-caps
+        name: Disallow improper capitalization
+        language: pygrep
+        entry: PyBind|Numpy|Cmake|CCache|Github|PyTest
+        exclude: .pre-commit-config.yaml
+
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.23.2
+    hooks:
+      - id: markdownlint-cli2
+        args: ["--config .markdownlint-cli2.yaml"]
+
+  - repo: https://github.com/numpy/numpydoc
+    rev: v1.11.0rc0
+    hooks:
+      - id: numpydoc-validation
+        exclude: ^noxfile.py$
+
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.12.11
+    hooks:
+      - id: uv-lock
+
+  - repo: local
+    hooks:
+      - id: pylint
+        args: ["--rcfile=.pylintrc.toml"]
+        name: Pylint
+        entry: python -m pylint
+        language: system
+        files: \.py$
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: Pytest (testmon)
+        entry: pytest -vv --testmon
+        language: system
+        files: \.py$
