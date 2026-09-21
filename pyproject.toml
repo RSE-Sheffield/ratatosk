@@ -35,10 +35,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/RSE-Sheffield/ratatosk"
-"Bug Tracker" = "https://github.com/RSE-Sheffield/ratatosk/issues"
-Discussions = "https://github.com/RSE-Sheffield/ratatosk/discussions"
-Changelog = "https://github.com/RSE-Sheffield/ratatosk/releases"
+Homepage = "https://github.com/yggdrasil-materials/ratatosk"
+"Bug Tracker" = "https://github.com/yggdrasil-materials/ratatosk/issues"
+Discussions = "https://github.com/yggdrasil-materials/ratatosk/discussions"
+Changelog = "https://github.com/yggdrasil-materials/ratatosk/releases"
 
 
 [dependency-groups]
